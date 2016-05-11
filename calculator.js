@@ -65,7 +65,7 @@ function performOperation(newNumber) {
     result = newNumber + currentNumber;
   } else if (operator === '-') {
     result = currentNumber - newNumber;
-  } else if (operator === 'x') {
+  } else if (operator === '*') {
     result = currentNumber * newNumber;
   } else if (operator === '/') {
     result = currentNumber / newNumber;
