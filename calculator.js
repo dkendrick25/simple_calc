@@ -25,25 +25,15 @@ $(function () {
  $('.number').click(function() {
    var number = $(this).text();
    var currentDisplay = $('#display').val();
-   var newDisplay = currentDisplay + number
+   var newDisplay = currentDisplay + number;
   $('#display').val(newDisplay);
  })
  //when operator is click parse new number
  $('.operator').click(function() {
    var newNumber = Number($('#display').val());
-   var result;
    if (operator && currentNumber) {
      //evalute what the operator is
-     if (operator === "+" ) {
-       result = currentNumber + newNumber;
-     } else if (operator === "-") {
-       result = currentNumber - newNumber;
-     } else if (operator === "*") {
-       result = currentNumber * newNumber;
-     } else if (operator === "/") {
-       result = currentNumber / newNumber;
-     }
-      currentNumber = result;
+     currentNumber = performOperation(newNumber);
      } else {
       currentNumber = newNumber;
    }
@@ -54,21 +44,11 @@ $(function () {
  //when = is clicked
  $('.evaluate').click(function() {
    var newNumber = Number($('#display').val());
-   var result;
    if (operator && currentNumber) {
      //evalute what the operator is
-     if (operator === "+" ) {
-       result = currentNumber + newNumber;
-     } else if (operator === "-") {
-       result = currentNumber - newNumber;
-     } else if (operator === "*") {
-       result = currentNumber * newNumber;
-     } else if (operator === "/") {
-       result = currentNumber / newNumber;
-     }
-     currentNumber = result;
+     currentNumber = performOperation(newNumber);
      operator = null;
-     $('#display').val(result);
+     $('#display').val(currentNumber);
    }
  });
  //when C unset the num and operator
@@ -78,3 +58,17 @@ $(function () {
    currentNumber = null;
  });
 });
+
+function performOperation(newNumber) {
+  var result;
+  if (operator === '+') {
+    result = newNumber + currentNumber;
+  } else if (operator === '-') {
+    result = currentNumber - newNumber;
+  } else if (operator === 'x') {
+    result = currentNumber * newNumber;
+  } else if (operator === '/') {
+    result = currentNumber / newNumber;
+  }
+  return result;
+}
